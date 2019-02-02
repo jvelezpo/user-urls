@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import '../App.scss';
 
 class Login extends Component {
+  
   render() {
     return (
       <div className="column">
@@ -22,7 +23,9 @@ class Login extends Component {
               placeholder="password"
               onChange={e => console.log()} />
               <br></br>
-              <button>Sign In</button>
+              <button
+                className="green"
+              >Sign In</button>
           </div>
           <div className="aside"></div>
         </div>
