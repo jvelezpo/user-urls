@@ -7,7 +7,12 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Login/>
+        <div className="header">
+
+        </div>
+        <div>
+          <Login />
+        </div>
       </div>
     );
   }

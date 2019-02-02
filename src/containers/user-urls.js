@@ -9,7 +9,7 @@ class UserUrl extends Component {
         <div className="row">
           <div className="aside"></div>
           <div className="userUrl">
-            
+          
           </div>
           <div className="aside"></div>
         </div>

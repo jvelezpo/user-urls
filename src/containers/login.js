@@ -8,17 +8,21 @@ class Login extends Component {
       <div className="column">
         <div className="row">
           <div className="aside"></div>
-          <div className="login">
+          <div className="content">
             <h3>E-mail</h3>
             <input
               className=""
               type="email"
+              placeholder="email"
               onChange={e => console.log()} />
             <h3>Password</h3>
             <input
               className=""
               type="password"
+              placeholder="password"
               onChange={e => console.log()} />
+              <br></br>
+              <button>Sign In</button>
           </div>
           <div className="aside"></div>
         </div>
