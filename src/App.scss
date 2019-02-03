@@ -1,39 +1,58 @@
 body{
-  
-  background: #2C3E50;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #4CA1AF, #2C3E50);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #4CA1AF, #2C3E50); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: #2C3E50;  
+  background: -webkit-linear-gradient(to right, #4CA1AF, #2C3E50);
+  background: linear-gradient(to right, #4CA1AF, rgb(162, 170, 179));
 }
 .header{
   height: 80px;
   background-color: #2c3e50;
-
 }
-.column{
-  width: 90%;
-  margin: 50px auto;
-  color:#ffffff;
-}
-.column, .row{
+.box, .row{
   display: flex;
+}
+.box{
   flex-direction: column;
-  .row{
-    flex-direction: row;
-    flex: auto;
-  }
-  .aside, .container{
-    overflow-y: auto;
-  }
-  .aside{
-    flex: 1;
-  }
-  .container{
-    flex: 1;
-    width: 500px
-  }
+  flex: auto;
+  // border:5px solid red;
+  
+}
+.content, .aside{
+  overflow-y: auto;
+}
+.row{
+  margin-top: 30px;
+}
+.content{
+  // margin-top: 30px;
+  width: 90%;
+  flex: 2;
+  // border:5px solid white;
+  margin: auto;
+}
+.aside{
+  flex: 2;
+  // border:5px solid blue ;
+}
+.forms{
+  background-color: #ffffff;
+  border:1px solid #2C3E50;
+  padding: 20px 20px;
+  border-radius: 10px;
 }
 
 
+
+.inputs {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: none;
+  border-bottom: 2px solid #009432;
+}
+.inputs:focus {
+  border: 3px solid #1289A7;
+}
 .green{
   margin-top: 20px;
   background-color: #009432;
@@ -43,4 +62,10 @@ body{
   border-radius: 4px;
   border: 2px solid #006266;
   font-weight: 900;
+  cursor: pointer;
+}
+.green:disabled{
+  background-color: #ffffff;
+  color: #000000;
+  cursor: not-allowed;
 }
