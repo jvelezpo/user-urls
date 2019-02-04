@@ -14,10 +14,15 @@ class Login extends Component {
       email: '',
       pass: ''
     }
+    this.login = this.login.bind(this);
   }
   componentDidMount(){
     console.log(this.props.history);
   }
+login(e){
+  e.preventDefault();
+  this.props.loginApi(this.state.email,this.state.pass);
+}
   render() {
     return (
       <div className="login">
@@ -47,7 +52,7 @@ class Login extends Component {
                           <button
                             className="green"
                             disabled={this.state.email.length === 0 || this.state.pass.length === 0}
-                            onClick={()=> this.props.loginApi(this.state.email,this.state.pass)}>Sign In</button>
+                            onClick={this.login}>Sign In</button>
                        
                       </li>
                     </ul>
