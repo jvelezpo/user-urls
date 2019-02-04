@@ -16,13 +16,13 @@ class Login extends Component {
     }
     this.login = this.login.bind(this);
   }
-  componentDidMount(){
+  componentDidMount() {
     console.log(this.props.history);
   }
-login(e){
-  e.preventDefault();
-  this.props.loginApi(this.state.email,this.state.pass);
-}
+  login(e) {
+    e.preventDefault();
+    this.props.loginApi(this.state.email, this.state.pass);
+  }
   render() {
     return (
       <div className="login">
@@ -48,15 +48,15 @@ login(e){
                   <div>
                     <ul>
                       <li>
-                       
-                          <button
-                            className="green"
-                            disabled={this.state.email.length === 0 || this.state.pass.length === 0}
-                            onClick={this.login}>Sign In</button>
-                       
+
+                        <button
+                          className="green"
+                          disabled={this.state.email.length === 0 || this.state.pass.length === 0}
+                          onClick={this.login}>Sign In</button>
+
                       </li>
                     </ul>
-                    
+
                     <Route path={`/user-urls/`} component={UserUrls} />
                   </div>
                 </Router>
@@ -71,15 +71,15 @@ login(e){
   }
 }
 //reducers
-function mapStateToProps({ loginReducer}){
-  return{
+function mapStateToProps({ loginReducer }) {
+  return {
     loginReducer
   }
 }
 //actions
-function mapDispatchToState( dipsatch ){
+function mapDispatchToState(dipsatch) {
   return bindActionCreators({
     loginApi
-  },dipsatch)
+  }, dipsatch)
 }
-export default connect( mapStateToProps, mapDispatchToState)(Login);
+export default connect(mapStateToProps, mapDispatchToState)(Login);

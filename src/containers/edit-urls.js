@@ -9,7 +9,7 @@ class EditUrl extends Component {
         <div className="row">
           <div className="aside"></div>
           <div className="editUrl">
-            
+
           </div>
           <div className="aside"></div>
         </div>

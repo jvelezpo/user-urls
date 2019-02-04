@@ -6,7 +6,7 @@ export function loginApi(email, password) {
 
   return dispatch => {
     return axios
-      .post(`${apiUrl}/user`, { email,password } )
+      .post(`${apiUrl}/user`, { email, password })
       .then(res => {
         dispatch({
           type: "LOGIN_API",
@@ -25,7 +25,7 @@ export function getUrls(email, pass) {
       .get(`${apiUrl}`)
       .then(res => {
         dispatch({
-          type:"GET_ALL_URLS",
+          type: "GET_ALL_URLS",
           payload: res.data
         })
       })
