@@ -1,11 +1,12 @@
 body{
-  background: #2C3E50;  
-  background: -webkit-linear-gradient(to right, #4CA1AF, #2C3E50);
-  background: linear-gradient(to right, #4CA1AF, rgb(162, 170, 179));
+  background: #FF512F;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #F09819, #FF512F);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #F09819, #FF512F); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
 }
 .header{
   height: 80px;
-  background-color: #607D8B;
+  background-color: #0c2531;
 }
 //css login view
 .login{
