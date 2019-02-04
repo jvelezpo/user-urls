@@ -2,7 +2,10 @@ function getInitialState() {
   return {
     userUrls: [],
     token: '',
-    user: {}
+    user: {
+      id: '',
+      email: ''
+    }
   }
 }
 

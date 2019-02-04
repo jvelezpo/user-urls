@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { bindActionCreators } from 'redux';
+import { withRouter } from 'react-router';
+
 import { loginApi } from '../actions';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import UserUrls from './user-urls';
 
 import '../App.scss';
 
@@ -19,6 +19,11 @@ class Login extends Component {
   }
   componentDidMount() {
     console.log(this.props.history);
+  }
+  componentDidUpdate() {
+    if (this.props.loginReducer.user.email !== '') {
+      this.props.history.push('/user-urls')
+    }
   }
   login(e) {
     e.preventDefault();
@@ -45,7 +50,7 @@ class Login extends Component {
                   type="password"
                   placeholder="password"
                   onChange={e => this.setState({ pass: e.target.value })} />
-                <Router>
+                
                   <div>
                     <ul>
                       <li>
@@ -58,9 +63,9 @@ class Login extends Component {
                       </li>
                     </ul>
 
-                    <Route path={`/user-urls/`} component={UserUrls} />
+                    
                   </div>
-                </Router>
+                
               </form>
               <h2>{this.props.loginReducer.email}</h2>
             </div>
@@ -83,4 +88,4 @@ function mapDispatchToState(dipsatch) {
     loginApi
   }, dipsatch)
 }
-export default connect(mapStateToProps, mapDispatchToState)(Login);
+export default withRouter(connect(mapStateToProps, mapDispatchToState)(Login));
