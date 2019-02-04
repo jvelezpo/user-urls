@@ -31,48 +31,34 @@ class Login extends Component {
   }
   render() {
     return (
-      <div className="login">
-        <div className="header"></div>
-        <div className="box">
-          <div className="row">
-            <div className="aside"></div>
-            <div className="content">
-              <form className="forms">
-                <h3>E-mail</h3>
-                <input
-                  className="inputs"
-                  type="email"
-                  placeholder="email"
-                  onChange={e => this.setState({ email: e.target.value })} />
-                <h3>Password</h3>
-                <input
-                  className="inputs"
-                  type="password"
-                  placeholder="password"
-                  onChange={e => this.setState({ pass: e.target.value })} />
-                
-                  <div>
-                    <ul>
-                      <li>
+      <form className="forms">
+        <h3>E-mail</h3>
+        <input
+          className="inputs"
+          type="email"
+          placeholder="email"
+          onChange={e => this.setState({ email: e.target.value })} />
+        <h3>Password</h3>
+        <input
+          className="inputs"
+          type="password"
+          placeholder="password"
+          onChange={e => this.setState({ pass: e.target.value })} />
 
-                        <button
-                          className="green"
-                          disabled={this.state.email.length === 0 || this.state.pass.length === 0}
-                          onClick={this.login}>Sign In</button>
+        <div>
+          <ul>
+            <li>
+              <button
+                className="green"
+                disabled={this.state.email.length === 0 || this.state.pass.length === 0}
+                onClick={this.login}>Sign In</button>
+            </li>
+          </ul>
 
-                      </li>
-                    </ul>
 
-                    
-                  </div>
-                
-              </form>
-              <h2>{this.props.loginReducer.email}</h2>
-            </div>
-            <div className="aside"></div>
-          </div>
         </div>
-      </div>
+
+      </form>
     );
   }
 }

@@ -37,19 +37,9 @@ export function loginApi(email, password) {
       })
   }
 }
-//GET all user urls by id
-export function getUrls(id) {
-  return dispatch => {
-    return axios
-      .get(`${apiUrl}`, { params: { id } })
-      .then(res => {
-        dispatch({
-          type: "GET_ALL_URLS",
-          payload: res.data
-        })
-      })
-      .catch(error => {
-        throw (error);
-      });
+export function setToken(token) {
+  return {
+    type: "SET_TOKEN",
+    payload: token
   }
 }
