@@ -6,7 +6,7 @@ export function loginApi(email, password) {
 
   return dispatch => {
     return axios
-      .get(`${apiUrl}/user`, { params: { email,password } })
+      .post(`${apiUrl}/user`, { email,password } )
       .then(res => {
         dispatch({
           type: "LOGIN_API",
