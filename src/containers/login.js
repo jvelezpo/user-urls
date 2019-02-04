@@ -12,7 +12,8 @@ class Login extends Component {
     super(props);
     this.state = {
       email: '',
-      pass: ''
+      pass: '',
+      token: 0
     }
     this.login = this.login.bind(this);
   }
