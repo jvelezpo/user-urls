@@ -1,11 +1,12 @@
-import axios from 'axios';
-const apiUrl = 'http://localhost:6000';
+import axios from "axios";
+const apiUrl = "http://localhost:7000";
 
 //GET  ONE -login get by email and id
-export function loginApi(email, pass) {
+export function loginApi(email, password) {
+
   return dispatch => {
     return axios
-      .get(`${apiUrl}`, { params: { email, pass } })
+      .get(`${apiUrl}/user`, { params: { email,password } })
       .then(res => {
         dispatch({
           type: "LOGIN_API",
@@ -18,7 +19,7 @@ export function loginApi(email, pass) {
   }
 }
 //GET ALL THE USER URLS
-export function loginApi(email, pass) {
+export function getUrls(email, pass) {
   return dispatch => {
     return axios
       .get(`${apiUrl}`)

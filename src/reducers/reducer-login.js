@@ -12,7 +12,7 @@ export default function(state= getInitialState(), action){
   switch(action.type){
     case 'LOGIN_API':
       return {
-        ...status,
+        ...state,
         user:action.payload
       };
     case 'GET_ALL_URLS':

@@ -15,6 +15,9 @@ class Login extends Component {
       pass: ''
     }
   }
+  componentDidMount(){
+    console.log(this.props.history);
+  }
   render() {
     return (
       <div className="login">
@@ -44,7 +47,7 @@ class Login extends Component {
                           <button
                             className="green"
                             disabled={this.state.email.length === 0 || this.state.pass.length === 0}
-                            onClick={()=> console.log(this.props)}>Sign In</button>
+                            onClick={()=> this.props.loginApi(this.state.email,this.state.pass)}>Sign In</button>
                        
                       </li>
                     </ul>
@@ -53,6 +56,7 @@ class Login extends Component {
                   </div>
                 </Router>
               </form>
+              <h2>{this.props.loginReducer.email}</h2>
             </div>
             <div className="aside"></div>
           </div>

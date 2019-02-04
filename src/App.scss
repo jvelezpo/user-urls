@@ -5,7 +5,7 @@ body{
 }
 .header{
   height: 80px;
-  background-color: #2c3e50;
+  background-color: #607D8B;
 }
 //css login view
 .login{
@@ -65,4 +65,7 @@ body{
   background-color: #ffffff;
   color: #000000;
   cursor: not-allowed;
+}
+ul li{
+  list-style: none;
 }
