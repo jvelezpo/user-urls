@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Rate } from 'antd';
 
-import { getUrls } from '../actions';
+import { getUrls, updateScore } from '../actions';
 
 import '../App.scss';
 
@@ -28,8 +28,9 @@ class UserUrl extends Component {
   buttonPrevent(e) {
     e.preventDefault();
   }
-  handleChange(value) {
+  handleChange(value, urlId, userId) {
     this.setState({ value });
+    this.props.updateScore(urlId, value, userId)
   }
   //to create the buttons
   createButtons() {
@@ -52,10 +53,11 @@ class UserUrl extends Component {
   }
   //function to create the list of urls 
   createUrlList(user, i) {
+    console.log('USUARIO: ',user)
     return (
       <li key={i}>
         {this.createButtons()}{user.url}
-        <Rate count={5} onChange={this.handleChange} value={user.score} />
+        <Rate count={5} onChange={e => this.handleChange(e, user.id, user.UserId)} value={user.score} />
       </li>
     )
   }
@@ -85,7 +87,8 @@ function mapStateToProps({ loginReducer }) {
 //actions
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-    getUrls
+    getUrls,
+    updateScore
   }, dispatch)
 }
 export default connect(mapStateToProps, mapDispatchToProps)(UserUrl);

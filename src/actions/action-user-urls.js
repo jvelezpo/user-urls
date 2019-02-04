@@ -3,7 +3,6 @@ const apiUrl = "http://localhost:7000";
 
 //GET all user urls by id
 export function getUrls(id) {
-  // console.log("token - id:",id)
   return dispatch => {
     return axios
       .get(`${apiUrl}/getUserUrls`, { params: { userId: id } })
@@ -18,4 +17,19 @@ export function getUrls(id) {
       });
   }
 }
-//
+//Update stare rating
+export function updateScore(id, score, userId) {
+  console.log('userId: ',userId);
+  return dispatch => {
+    return axios
+      .put(`${apiUrl}/updateScore`, { id, score })
+      .then(res => {
+        dispatch(
+          getUrls(userId)
+        )
+      })
+      .catch(error => {
+        throw (error);
+      });
+  }
+}
