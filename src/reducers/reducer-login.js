@@ -5,7 +5,8 @@ function getInitialState() {
     user: {
       id: '',
       email: ''
-    }
+    },
+    success:false
   }
 }
 
@@ -14,7 +15,8 @@ export default function (state = getInitialState(), action) {
     case 'LOGIN_API':
       return {
         ...state,
-        token: action.payload.token
+        token: action.payload.token,
+        success: action.payload.success
       };
     case 'GET_ALL_URLS':
       return {

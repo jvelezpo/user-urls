@@ -53,7 +53,7 @@ class UserUrl extends Component {
   }
   //function to create the list of urls 
   createUrlList(user, i) {
-    console.log('USUARIO: ',user)
+    console.log('USUARIO: ', user)
     return (
       <li key={i}>
         {this.createButtons()}{user.url}

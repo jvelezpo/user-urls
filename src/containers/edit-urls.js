@@ -3,17 +3,22 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import '../App.scss';
 
 class EditUrl extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      url: ''
+    }
+  }
   render() {
     return (
-      <div className="column">
-        <div className="row">
-          <div className="aside"></div>
-          <div className="editUrl">
-
-          </div>
-          <div className="aside"></div>
-        </div>
-      </div>
+      <form>
+        <h2>Url</h2>
+        <input
+          className=""
+          type="text"
+          onChange={()=> console.log('hola')}
+          value={this.state.url}/>
+      </form>
     );
   }
 }

@@ -17,11 +17,8 @@ class Login extends Component {
     }
     this.login = this.login.bind(this);
   }
-  componentDidMount() {
-    console.log(this.props.history);
-  }
   componentDidUpdate() {
-    if (this.props.loginReducer.user.email !== '') {
+    if (this.props.loginReducer.success) {
       this.props.history.push('/user-urls')
     }
   }
@@ -32,13 +29,13 @@ class Login extends Component {
   render() {
     return (
       <form className="forms">
-        <h3>E-mail</h3>
+        <h2>E-mail</h2>
         <input
           className="inputs"
           type="email"
           placeholder="email"
           onChange={e => this.setState({ email: e.target.value })} />
-        <h3>Password</h3>
+        <h2>Password</h2>
         <input
           className="inputs"
           type="password"
