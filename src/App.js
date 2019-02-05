@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 
 import Login from './containers/login';
 import UserUrl from './containers/user-urls';
+import EditUrl from './containers/edit-urls';
 import { setToken } from './actions';
 import './App.scss';
 
@@ -24,6 +25,7 @@ class App extends Component {
           </div>
           <Route exact path="/" component={Login} />
           <Route path="/user-urls" component={UserUrl} />
+          <Route path="/edit-urls" component={EditUrl} />
         </div>
 
 

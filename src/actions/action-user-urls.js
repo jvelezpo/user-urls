@@ -19,7 +19,7 @@ export function getUrls(id) {
 }
 //Update stare rating
 export function updateScore(id, score, userId) {
-  console.log('userId: ',userId);
+  console.log('userId: ', userId);
   return dispatch => {
     return axios
       .put(`${apiUrl}/updateScore`, { id, score })
@@ -31,5 +31,21 @@ export function updateScore(id, score, userId) {
       .catch(error => {
         throw (error);
       });
+  }
+}
+//delete url
+export function deleteUrl(id, userId) {
+  console.log('DATOS PARA BORRAR: ', id, userId)
+  return dispatch => {
+    return axios
+      .delete(`${apiUrl}/deleteUrl`, { data: { id } })
+      .then(res => {
+        dispatch(
+          getUrls(userId)
+        )
+      })
+      .catch(error => {
+        throw (error);
+      })
   }
 }

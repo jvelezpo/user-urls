@@ -41,7 +41,6 @@ class Login extends Component {
           type="password"
           placeholder="password"
           onChange={e => this.setState({ pass: e.target.value })} />
-
         <div>
           <ul>
             <li>
@@ -51,10 +50,7 @@ class Login extends Component {
                 onClick={this.login}>Sign In</button>
             </li>
           </ul>
-
-
         </div>
-
       </form>
     );
   }
@@ -66,9 +62,9 @@ function mapStateToProps({ loginReducer }) {
   }
 }
 //actions
-function mapDispatchToState(dipsatch) {
+function mapDispatchToProps(dipsatch) {
   return bindActionCreators({
     loginApi
   }, dipsatch)
 }
-export default withRouter(connect(mapStateToProps, mapDispatchToState)(Login));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Login));

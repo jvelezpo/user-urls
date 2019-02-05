@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Rate } from 'antd';
+import { withRouter } from 'react-router';
 
-import { getUrls, updateScore } from '../actions';
+import { getUrls, updateScore, deleteUrl } from '../actions';
 
 import '../App.scss';
 
@@ -22,11 +23,16 @@ class UserUrl extends Component {
 
   //function to call the action and load all the user urls
   componentDidMount() {
+    console.log(this.props)
     this.props.getUrls(this.props.loginReducer.token);
   }
   //to prevent de button default
   buttonPrevent(e) {
     e.preventDefault();
+    this.props.deleteUrl(
+      this.props.loginReducer.userUrls[0].id,
+      this.props.loginReducer.user.id)
+
   }
   handleChange(value, urlId, userId) {
     this.setState({ value });
@@ -38,13 +44,13 @@ class UserUrl extends Component {
       <div>
         <button
           className=""
-          onClick={this.buttonPrevent}>
+          onClick={() => this.props.history.push('/edit-urls')}>
           Edit
           </button>
 
         <button
           className=""
-          onClick={this.buttonPrevent}>
+          onClick={e => this.buttonPrevent(e)}>
           Delete
           </button>
 
@@ -66,7 +72,7 @@ class UserUrl extends Component {
       <form className="forms">
         <h1>Welcome</h1>
         <button
-          className=""
+          className="green"
           onClick={this.buttonPrevent}>
           Create
         </button>
@@ -88,7 +94,8 @@ function mapStateToProps({ loginReducer }) {
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
     getUrls,
-    updateScore
+    updateScore,
+    deleteUrl
   }, dispatch)
 }
-export default connect(mapStateToProps, mapDispatchToProps)(UserUrl);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(UserUrl));
