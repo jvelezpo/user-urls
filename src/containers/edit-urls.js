@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router';
+import { Alert } from 'antd';
 
 import { newUrl, getUrl, updateUrl } from '../actions';
 
@@ -82,21 +83,25 @@ class EditUrl extends Component {
           type="text"
           onChange={e => this.setState({ url: e.target.value })}
           value={this.state.url} />
+        <h2>Score</h2>
         <input
           className="inputs"
           type="number"
-          min={1} 
-          max={5} 
+          min={1}
+          max={5}
           value={3}
           onChange={e => this.setState({ score: e.target.value })}
           value={this.state.score} />
+        {this.state.score < 1 || this.state.score > 5 &&
+          <Alert message="Type a  score between 1 and 5" type="info" closeText="Close Now" />
+        }
         <br />
         {/* SAVE BUTTON IF ITS A NEW URL */}
         {this.state.urlId === ':urlId' &&
           <button
             className="green"
             onClick={e => this.saveButton(e)}
-            disabled={this.state.url.length===0 || this.state.score>5 || this.state.score<1}>Save
+            disabled={this.state.url.length === 0 || this.state.score > 5 || this.state.score < 1}>Save
           </button>
         }
         {/* EDIT BUTTON IF URL EXIST */}
@@ -104,7 +109,7 @@ class EditUrl extends Component {
           <button
             className="green"
             onClick={e => this.editButton(e)}
-            disabled={this.state.url.length===0 || this.state.score>5 || this.state.score<1}>Edit
+            disabled={this.state.url.length === 0 || this.state.score > 5 || this.state.score < 1}>Edit
           </button>
         }
         <button
