@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router';
 
-import { newUrl,getUrl } from '../actions';
+import { newUrl, getUrl } from '../actions';
 import '../App.scss';
 
 class EditUrl extends Component {
@@ -13,20 +13,27 @@ class EditUrl extends Component {
       url: '',
       score: 0
     }
+    this.cancelButton = this.cancelButton.bind(this);
   }
-  componentDidMount(){
-    console.log('que trae????::::',this.props.match.params.urlId)
-    this.props.getUrl(this.props.match.params.urlId)
-    this.setState({
-      url:this.props.loginReducer.urlData.url,
-      score: this.props.loginReducer.urlData.score
-    })
-  }
-  componentWillUnmount(){
-    this.setState({
-      url:'',
-      score: 0
-    })
+  componentDidMount() {
+    
+    let id = this.props.match.params.urlId;
+    console.log('que trae????::::', id)
+    console.log('que es????::::', typeof id)
+    this.props.getUrl(id)
+
+    if (id === "urlId") {
+      this.setState({
+        url: '',
+        score: 0
+      })
+    } else {
+      this.setState({
+        url: this.props.loginReducer.urlData.url,
+        score: this.props.loginReducer.urlData.score
+      })
+    }
+    id= undefined;
   }
   saveButton(e) {
     e.preventDefault();
@@ -37,6 +44,14 @@ class EditUrl extends Component {
     );
     this.props.history.push('/user-urls');
   }
+  cancelButton(e) {
+    e.preventDefault();
+    this.setState({
+      url: '',
+      score: 0
+    })
+    this.props.history.push('/user-urls');
+  }
   render() {
     return (
       <form className="forms">
@@ -45,12 +60,12 @@ class EditUrl extends Component {
           className="inputs"
           type="text"
           onChange={e => this.setState({ url: e.target.value })}
-          value={this.state.url}/>
+          value={this.state.url} />
         <input
           className="inputs"
           type="number"
           onChange={e => this.setState({ score: e.target.value })}
-          value={this.state.score}/>
+          value={this.state.score} />
         <br />
         <button
           className="green"
@@ -58,7 +73,7 @@ class EditUrl extends Component {
         </button>
         <button
           className="red"
-          onClick={() => this.props.history.push('/user-urls')}>
+          onClick={e => this.cancelButton(e)}>
           Cancel
         </button>
       </form>
