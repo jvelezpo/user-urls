@@ -46,6 +46,11 @@ export default function (state = getInitialState(), action) {
       }
     case 'LOG_OUT':
       return getInitialState();
+    case 'CLEAR_MESSAGE':
+      return{
+        ...state,
+        message: ''
+      }
     default:
       return state;
   }

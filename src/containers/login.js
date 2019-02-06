@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router';
-import { message, Button } from 'antd';
+import { message } from 'antd';
 
 
-import { loginApi } from '../actions';
+import { loginApi, clearMessage } from '../actions';
 import { connect } from 'react-redux';
 
 import '../App.scss';
@@ -19,14 +19,22 @@ class Login extends Component {
     }
     this.login = this.login.bind(this);
   }
+
   componentDidUpdate() {
     if (this.props.loginReducer.success) {
       this.props.history.push('/user-urls')
     }
+
+
   }
   login(e) {
     e.preventDefault();
-    this.props.loginApi(this.state.email, this.state.pass);
+    this.props.loginApi(this.state.email, this.state.pass).then(() => {
+      if (this.props.loginReducer.message !== "") {
+        message.error(this.props.loginReducer.message);
+        this.props.clearMessage();
+      }
+    });
   }
   render() {
     return (
@@ -66,7 +74,9 @@ function mapStateToProps({ loginReducer }) {
 //actions
 function mapDispatchToProps(dipsatch) {
   return bindActionCreators({
-    loginApi
+    loginApi,
+    clearMessage
   }, dipsatch)
 }
+
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Login));

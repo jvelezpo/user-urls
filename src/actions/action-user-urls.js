@@ -50,8 +50,8 @@ export function deleteUrl(id, userId) {
   }
 }
 //log out
-export function logOut(){
-  return{
-    type:"LOG_OUT"
+export function logOut() {
+  return {
+    type: "LOG_OUT"
   }
 }
