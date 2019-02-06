@@ -92,7 +92,7 @@ class UserUrl extends Component {
         <h1>Welcome</h1>
         <button
           className="green"
-          onClick={() => this.props.history.push('/edit-urls/:urlId')}>
+          onClick={() => this.props.history.push('/create-url')}>
           Create
         </button>
         <ul>

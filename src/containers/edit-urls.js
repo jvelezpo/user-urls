@@ -14,30 +14,29 @@ class EditUrl extends Component {
     this.state = {
       url: '',
       score: 0,
-      urlId: this.props.match.params.urlId
+      urlId: ''
     }
     this.cancelButton = this.cancelButton.bind(this);
     this.prevent = this.prevent.bind(this);
     this.score = this.score.bind(this);
   }
   componentDidMount() {
+    console.log('que tiene:', this.props.match.params.urlId)
+    if (this.props.match.params.urlId !== undefined) {
+      this.props.getUrl(this.props.match.params.urlId).then(() => {
+        this.setState({
+          urlId: this.props.match.params.urlId,
+          url: this.props.loginReducer.urlData.url,
+          score: this.props.loginReducer.urlData.score
+        })
+      })
 
-    console.log('que trae????::::', this.state.urlId)
-    console.log('que es????::::', typeof this.state.urlId)
-    this.props.getUrl(this.state.urlId)
-
-    if (this.state.urlId === ":urlId") {
+    } else {
       this.setState({
         url: '',
         score: 0
       })
-    } else {
-      this.setState({
-        url: this.props.loginReducer.urlData.url,
-        score: this.props.loginReducer.urlData.score
-      })
     }
-    ;
   }
   //PREVENT
   prevent(e) {
@@ -84,7 +83,7 @@ class EditUrl extends Component {
           message.error(`Type a  score between 1 and 5, your value "${score}" is invalid`);
         }
       });
-    }  else{
+    } else {
       this.setState({ score: '' });
     }
   }
@@ -106,10 +105,10 @@ class EditUrl extends Component {
           max={5}
           onChange={e => this.score(e)}
           value={this.state.score} />
-  
+
         <br />
         {/* SAVE BUTTON IF ITS A NEW URL */}
-        {this.state.urlId === ':urlId' &&
+        {this.state.urlId === '' &&
           <button
             className="green"
             onClick={e => this.saveButton(e)}
@@ -117,7 +116,7 @@ class EditUrl extends Component {
           </button>
         }
         {/* EDIT BUTTON IF URL EXIST */}
-        {this.state.urlId !== ':urlId' &&
+        {this.state.urlId !== '' &&
           <button
             className="green"
             onClick={e => this.editButton(e)}

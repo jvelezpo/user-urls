@@ -26,6 +26,7 @@ class App extends Component {
           <Route exact path="/" component={Login} />
           <Route path="/user-urls" component={UserUrl} />
           <Route path="/edit-urls/:urlId" component={EditUrl} />
+          <Route path="/create-url" component={EditUrl} />
         </div>
 
 
