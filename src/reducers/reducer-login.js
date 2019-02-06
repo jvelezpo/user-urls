@@ -42,6 +42,8 @@ export default function (state = getInitialState(), action) {
         ...state,
         urlData: action.payload
       }
+    case 'LOG_OUT':
+      return state;
     default:
       return state;
   }

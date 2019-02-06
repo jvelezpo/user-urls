@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { Rate } from 'antd';
 import { withRouter } from 'react-router';
 
-import { getUrls, updateScore, deleteUrl } from '../actions';
+import { getUrls, updateScore, deleteUrl, logOut } from '../actions';
 
 import '../App.scss';
 
@@ -19,6 +19,7 @@ class UserUrl extends Component {
     this.createButtons = this.createButtons.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.prevent = this.prevent.bind(this);
+    this.logOutButton = this.logOutButton.bind(this);
   }
 
   //function to call the action and load all the user urls
@@ -26,7 +27,7 @@ class UserUrl extends Component {
     this.props.getUrls(this.props.loginReducer.token);
   }
   //PREVENT
-  prevent(e){
+  prevent(e) {
     e.preventDefault();
   }
   //DELETE BUTTON!
@@ -43,6 +44,12 @@ class UserUrl extends Component {
     console.log('que id estoy mandando?::', this.props.loginReducer.userUrls[i].id)
     this.props.history.push(`/edit-urls/${this.props.loginReducer.userUrls[i].id}`)
 
+  }
+  //LOG OUT
+  logOutButton(e){
+    this.prevent(e);
+    this.props.logOut();
+    this.props.history.push('/');
   }
   //to handle the stare score
   handleChange(value, urlId, userId) {
@@ -89,7 +96,12 @@ class UserUrl extends Component {
         <ul>
           {this.props.loginReducer.userUrls.map((e, i) => this.createUrlList(e, i))}
         </ul>
-
+        <hr />
+        <button
+          className="red"
+          onClick={e => this.logOutButton(e)}>
+          Log out
+        </button>
       </form>
     );
   }
@@ -105,7 +117,8 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators({
     getUrls,
     updateScore,
-    deleteUrl
+    deleteUrl,
+    logOut
   }, dispatch)
 }
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(UserUrl));
