@@ -18,27 +18,33 @@ class UserUrl extends Component {
     this.createUrlList = this.createUrlList.bind(this);
     this.createButtons = this.createButtons.bind(this);
     this.handleChange = this.handleChange.bind(this);
-
+    this.prevent = this.prevent.bind(this);
   }
 
   //function to call the action and load all the user urls
   componentDidMount() {
     this.props.getUrls(this.props.loginReducer.token);
   }
-  //to prevent de button default
-  buttonDelete(e,i) {
+  //PREVENT
+  prevent(e){
     e.preventDefault();
+  }
+  //DELETE BUTTON!
+  buttonDelete(e, i) {
+    this.prevent(e);
     this.props.deleteUrl(
       this.props.loginReducer.userUrls[i].id,
       this.props.loginReducer.user.id
     )
   }
-  buttonUpdate(e,i) {
-    e.preventDefault();
-    console.log('que id estoy mandando?::',this.props.loginReducer.userUrls[i].id)
+  //UPDATE FORM BUTTON
+  buttonUpdate(e, i) {
+    this.prevent(e);
+    console.log('que id estoy mandando?::', this.props.loginReducer.userUrls[i].id)
     this.props.history.push(`/edit-urls/${this.props.loginReducer.userUrls[i].id}`)
 
   }
+  //to handle the stare score
   handleChange(value, urlId, userId) {
     this.setState({ value });
     this.props.updateScore(urlId, value, userId)
@@ -49,13 +55,13 @@ class UserUrl extends Component {
       <div>
         <button
           className="yellow"
-          onClick={e => this.buttonUpdate(e,i)}>
+          onClick={e => this.buttonUpdate(e, i)}>
           Edit
           </button>
 
         <button
           className="red"
-          onClick={e => this.buttonDelete(e,i)}>
+          onClick={e => this.buttonDelete(e, i)}>
           Delete
           </button>
 

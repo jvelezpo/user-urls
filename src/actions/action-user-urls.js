@@ -17,7 +17,7 @@ export function getUrls(id) {
       });
   }
 }
-//Update stare rating
+//PUT stare rating
 export function updateScore(id, score, userId) {
   console.log('userId: ', userId);
   return dispatch => {

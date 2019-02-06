@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router';
 
-import { newUrl, getUrl } from '../actions';
+import { newUrl, getUrl, updateUrl } from '../actions';
+
 import '../App.scss';
 
 class EditUrl extends Component {
@@ -11,18 +12,19 @@ class EditUrl extends Component {
     super(props);
     this.state = {
       url: '',
-      score: 0
+      score: 0,
+      urlId: this.props.match.params.urlId
     }
     this.cancelButton = this.cancelButton.bind(this);
+    this.prevent = this.prevent.bind(this);
   }
   componentDidMount() {
-    
-    let id = this.props.match.params.urlId;
-    console.log('que trae????::::', id)
-    console.log('que es????::::', typeof id)
-    this.props.getUrl(id)
 
-    if (id === "urlId") {
+    console.log('que trae????::::', this.state.urlId)
+    console.log('que es????::::', typeof this.state.urlId)
+    this.props.getUrl(this.state.urlId)
+
+    if (this.state.urlId === ":urlId") {
       this.setState({
         url: '',
         score: 0
@@ -33,10 +35,15 @@ class EditUrl extends Component {
         score: this.props.loginReducer.urlData.score
       })
     }
-    id= undefined;
+    ;
   }
-  saveButton(e) {
+  //PREVENT
+  prevent(e) {
     e.preventDefault();
+  }
+  //SAVE
+  saveButton(e) {
+    this.prevent(e);
     this.props.newUrl(
       this.state.url,
       this.props.loginReducer.user.id,
@@ -44,14 +51,28 @@ class EditUrl extends Component {
     );
     this.props.history.push('/user-urls');
   }
+  //EDIT
+  editButton(e) {
+    this.prevent(e);
+    //console.log("states",this.state.urlId,this.state.url,this.state.score,this.props.loginReducer.user.id)
+    this.props.updateUrl(
+      this.state.urlId,
+      this.state.url,
+      this.state.score,
+      this.props.loginReducer.user.id
+    )
+    this.props.history.push('/user-urls');
+  }
+  //CANCEL
   cancelButton(e) {
-    e.preventDefault();
+    this.prevent(e);
     this.setState({
       url: '',
       score: 0
     })
     this.props.history.push('/user-urls');
   }
+
   render() {
     return (
       <form className="forms">
@@ -67,10 +88,20 @@ class EditUrl extends Component {
           onChange={e => this.setState({ score: e.target.value })}
           value={this.state.score} />
         <br />
-        <button
-          className="green"
-          onClick={e => this.saveButton(e)}>Save/Edit
-        </button>
+        {/* SAVE BUTTON IF ITS A NEW URL */}
+        {this.state.urlId === ':urlId' &&
+          <button
+            className="green"
+            onClick={e => this.saveButton(e)}>Save
+          </button>
+        }
+        {/* EDIT BUTTON IF URL EXIST */}
+        {this.state.urlId !== ':urlId' &&
+          <button
+            className="green"
+            onClick={e => this.editButton(e)}>Edit
+          </button>
+        }
         <button
           className="red"
           onClick={e => this.cancelButton(e)}>
@@ -90,7 +121,8 @@ function mapStateToProps({ loginReducer }) {
 function mapDispatchToProps(dipsatch) {
   return bindActionCreators({
     newUrl,
-    getUrl
+    getUrl,
+    updateUrl
   }, dipsatch)
 }
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(EditUrl));
