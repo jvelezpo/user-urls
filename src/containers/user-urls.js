@@ -23,15 +23,19 @@ class UserUrl extends Component {
 
   //function to call the action and load all the user urls
   componentDidMount() {
-    console.log(this.props)
     this.props.getUrls(this.props.loginReducer.token);
   }
   //to prevent de button default
-  buttonPrevent(e) {
+  buttonDelete(e) {
     e.preventDefault();
     this.props.deleteUrl(
       this.props.loginReducer.userUrls[0].id,
-      this.props.loginReducer.user.id)
+      this.props.loginReducer.user.id
+    )
+
+  }
+  buttonUpdate(e) {
+    e.preventDefault();
 
   }
   handleChange(value, urlId, userId) {
@@ -43,14 +47,14 @@ class UserUrl extends Component {
     return (
       <div>
         <button
-          className=""
-          onClick={() => this.props.history.push('/edit-urls')}>
+          className="yellow"
+          onClick={e => this.buttonUpdate(e)}>
           Edit
           </button>
 
         <button
-          className=""
-          onClick={e => this.buttonPrevent(e)}>
+          className="red"
+          onClick={e => this.buttonDelete(e)}>
           Delete
           </button>
 
@@ -73,7 +77,7 @@ class UserUrl extends Component {
         <h1>Welcome</h1>
         <button
           className="green"
-          onClick={this.buttonPrevent}>
+          onClick={() => this.props.history.push('/edit-urls')}>
           Create
         </button>
         <ul>

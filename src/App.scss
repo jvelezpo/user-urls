@@ -58,9 +58,8 @@ body{
 .inputs:focus {
   border: 3px solid #1289A7;
 }
-.green{
+.green, .yellow, .red{
   margin-top: 20px;
-  background-color: #009432;
   color: #ffffff;
   height: 30px;
   width: 100px;
@@ -68,7 +67,15 @@ body{
   border: 2px solid #006266;
   font-weight: 900;
   cursor: pointer;
-  
+}
+.green{
+  background-color: #009432;
+}
+.yellow{
+  background-color: #fdbd08;
+}
+.red{
+  background-color: #f51010;
 }
 .green:disabled{
   background-color: #ffffff;
