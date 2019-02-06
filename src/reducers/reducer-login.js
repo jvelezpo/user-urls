@@ -10,7 +10,8 @@ function getInitialState() {
     urlData: {
       url:'',
       score:0
-    }
+    },
+    message:''
   }
 }
 
@@ -20,7 +21,8 @@ export default function (state = getInitialState(), action) {
       return {
         ...state,
         token: action.payload.token,
-        success: action.payload.success
+        success: action.payload.success,
+        message:action.payload.message
       };
     case 'GET_ALL_URLS':
       return {
@@ -43,7 +45,7 @@ export default function (state = getInitialState(), action) {
         urlData: action.payload
       }
     case 'LOG_OUT':
-      return state;
+      return getInitialState();
     default:
       return state;
   }

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router';
-import { Alert } from 'antd';
+import { message } from 'antd';
 
 import { newUrl, getUrl, updateUrl } from '../actions';
 
@@ -18,6 +18,7 @@ class EditUrl extends Component {
     }
     this.cancelButton = this.cancelButton.bind(this);
     this.prevent = this.prevent.bind(this);
+    this.score = this.score.bind(this);
   }
   componentDidMount() {
 
@@ -73,6 +74,20 @@ class EditUrl extends Component {
     })
     this.props.history.push('/user-urls');
   }
+  //to manage the score input
+  score(e) {
+    if (e.target.value !== '') {
+      let score = e.target.value;
+
+      this.setState({ score: score }, () => {
+        if (this.state.score < 1 || this.state.score > 5) {
+          message.error(`Type a  score between 1 and 5, your value "${score}" is invalid`);
+        }
+      });
+    }  else{
+      this.setState({ score: '' });
+    }
+  }
 
   render() {
     return (
@@ -89,12 +104,9 @@ class EditUrl extends Component {
           type="number"
           min={1}
           max={5}
-          value={3}
-          onChange={e => this.setState({ score: e.target.value })}
+          onChange={e => this.score(e)}
           value={this.state.score} />
-        {this.state.score < 1 || this.state.score > 5 &&
-          <Alert message="Type a  score between 1 and 5" type="info" closeText="Close Now" />
-        }
+  
         <br />
         {/* SAVE BUTTON IF ITS A NEW URL */}
         {this.state.urlId === ':urlId' &&
