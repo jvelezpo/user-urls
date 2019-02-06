@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router';
 
-import { newUrl } from '../actions';
+import { newUrl,getUrl } from '../actions';
 import '../App.scss';
 
 class EditUrl extends Component {
@@ -13,6 +13,20 @@ class EditUrl extends Component {
       url: '',
       score: 0
     }
+  }
+  componentDidMount(){
+    console.log('que trae????::::',this.props.match.params.urlId)
+    this.props.getUrl(this.props.match.params.urlId)
+    this.setState({
+      url:this.props.loginReducer.urlData.url,
+      score: this.props.loginReducer.urlData.score
+    })
+  }
+  componentWillUnmount(){
+    this.setState({
+      url:'',
+      score: 0
+    })
   }
   saveButton(e) {
     e.preventDefault();
@@ -31,12 +45,12 @@ class EditUrl extends Component {
           className="inputs"
           type="text"
           onChange={e => this.setState({ url: e.target.value })}
-        />
+          value={this.state.url}/>
         <input
           className="inputs"
           type="number"
           onChange={e => this.setState({ score: e.target.value })}
-        />
+          value={this.state.score}/>
         <br />
         <button
           className="green"
@@ -60,7 +74,8 @@ function mapStateToProps({ loginReducer }) {
 //actions
 function mapDispatchToProps(dipsatch) {
   return bindActionCreators({
-    newUrl
+    newUrl,
+    getUrl
   }, dipsatch)
 }
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(EditUrl));

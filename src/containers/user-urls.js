@@ -26,16 +26,17 @@ class UserUrl extends Component {
     this.props.getUrls(this.props.loginReducer.token);
   }
   //to prevent de button default
-  buttonDelete(e) {
+  buttonDelete(e,i) {
     e.preventDefault();
     this.props.deleteUrl(
-      this.props.loginReducer.userUrls[0].id,
+      this.props.loginReducer.userUrls[i].id,
       this.props.loginReducer.user.id
     )
-
   }
-  buttonUpdate(e) {
+  buttonUpdate(e,i) {
     e.preventDefault();
+    console.log('que id estoy mandando?::',this.props.loginReducer.userUrls[i].id)
+    this.props.history.push(`/edit-urls/${this.props.loginReducer.userUrls[i].id}`)
 
   }
   handleChange(value, urlId, userId) {
@@ -43,18 +44,18 @@ class UserUrl extends Component {
     this.props.updateScore(urlId, value, userId)
   }
   //to create the buttons
-  createButtons() {
+  createButtons(i) {
     return (
       <div>
         <button
           className="yellow"
-          onClick={e => this.buttonUpdate(e)}>
+          onClick={e => this.buttonUpdate(e,i)}>
           Edit
           </button>
 
         <button
           className="red"
-          onClick={e => this.buttonDelete(e)}>
+          onClick={e => this.buttonDelete(e,i)}>
           Delete
           </button>
 
@@ -66,7 +67,7 @@ class UserUrl extends Component {
     console.log('USUARIO: ', user)
     return (
       <li key={i}>
-        {this.createButtons()}{user.url}
+        {this.createButtons(i)}{user.url}
         <Rate count={5} onChange={e => this.handleChange(e, user.id, user.UserId)} value={user.score} />
       </li>
     )
@@ -77,7 +78,7 @@ class UserUrl extends Component {
         <h1>Welcome</h1>
         <button
           className="green"
-          onClick={() => this.props.history.push('/edit-urls')}>
+          onClick={() => this.props.history.push('/edit-urls/:urlId')}>
           Create
         </button>
         <ul>

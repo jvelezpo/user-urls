@@ -21,15 +21,21 @@ export function newUrl(url, UserId, score) {
 
 //GET  url by id for update
 export function getUrl(id) {
+  console.log("id url:",id)
   return dispatch => {
     return axios
       .get(`${apiUrl}/getUrl`, { params: { id } })
       .then(res => {
         dispatch({
-          type: "GET_URL",
+          type: "GET_ONE_URL",
           payload: res.data
         })
       })
+      // .then(res => {
+      //   dispatch(
+      //     getUrls(id)
+      //   )
+      // })
       .catch(error => {
         throw (error);
       });

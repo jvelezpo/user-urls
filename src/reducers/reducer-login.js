@@ -6,7 +6,11 @@ function getInitialState() {
       id: '',
       email: ''
     },
-    success:false
+    success: false,
+    urlData: {
+      url:'',
+      score:0
+    }
   }
 }
 
@@ -24,14 +28,19 @@ export default function (state = getInitialState(), action) {
         userUrls: action.payload
       }
     case 'GET_CURRENT_USER':
-      return{
+      return {
         ...state,
         user: action.payload
       }
     case 'SET_TOKEN':
-      return{
+      return {
         ...state,
         token: action.payload
+      }
+    case 'GET_ONE_URL':
+      return {
+        ...state,
+        urlData: action.payload
       }
     default:
       return state;
