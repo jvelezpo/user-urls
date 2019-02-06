@@ -85,6 +85,9 @@ class EditUrl extends Component {
         <input
           className="inputs"
           type="number"
+          min={1} 
+          max={5} 
+          value={3}
           onChange={e => this.setState({ score: e.target.value })}
           value={this.state.score} />
         <br />
@@ -92,14 +95,16 @@ class EditUrl extends Component {
         {this.state.urlId === ':urlId' &&
           <button
             className="green"
-            onClick={e => this.saveButton(e)}>Save
+            onClick={e => this.saveButton(e)}
+            disabled={this.state.url.length===0 || this.state.score>5 || this.state.score<1}>Save
           </button>
         }
         {/* EDIT BUTTON IF URL EXIST */}
         {this.state.urlId !== ':urlId' &&
           <button
             className="green"
-            onClick={e => this.editButton(e)}>Edit
+            onClick={e => this.editButton(e)}
+            disabled={this.state.url.length===0 || this.state.score>5 || this.state.score<1}>Edit
           </button>
         }
         <button
