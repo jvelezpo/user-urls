@@ -59,8 +59,8 @@ body{
   border: 3px solid #1289A7;
 }
 .green, .yellow, .red{
-  margin-top: 20px;
   color: #ffffff;
+  margin: 0 5px;
   height: 30px;
   width: 100px;
   border-radius: 4px;
@@ -84,4 +84,9 @@ body{
 }
 ul li{
   list-style: none;
+}
+.list{
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 0;
 }

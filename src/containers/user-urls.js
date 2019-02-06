@@ -78,7 +78,9 @@ class UserUrl extends Component {
   //function to create the list of urls 
   createUrlList(user, i) {
     return (
-      <li key={i}>
+      <li 
+        key={i}
+        className="list">
         {this.createButtons(i)}{user.url}
         <Rate count={5} onChange={e => this.handleChange(e, user.id, user.UserId)} value={user.score} />
       </li>
