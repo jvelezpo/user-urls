@@ -91,7 +91,7 @@ class UserUrl extends Component {
       <form className="forms">
         <h1>Welcome</h1>
         <button
-          className="green"
+          className="create green"
           onClick={() => this.props.history.push('/create-url')}>
           Create
         </button>
