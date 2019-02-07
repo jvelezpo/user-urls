@@ -7,5 +7,5 @@ Description: React app with login to authenticate the users accounts and store t
 
 //commands:
 
-run app: npm start
+run app: yarn start
 
