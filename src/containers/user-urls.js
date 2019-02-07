@@ -100,7 +100,7 @@ class UserUrl extends Component {
         </ul>
         <hr />
         <button
-          className="red"
+          className="red logOut"
           onClick={e => this.logOutButton(e)}>
           Log out
         </button>
