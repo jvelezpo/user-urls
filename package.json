@@ -21,8 +21,7 @@
     "eject": "react-scripts eject",
     "cypress:open": "cypress open",
     "cypress:run": "cypress run",
-    "test": "yarn build && run-p --race start cypress:run",
-    "serve:build": "NODE_ENV=test serve -s build -p 3000"
+    "test": "yarn build && run-p --race start cypress:run"
   },
   "eslintConfig": {
     "extends": "react-app"
