@@ -7,4 +7,5 @@ before_script:
   
   
 script:
+  - npm start
   - npm test 
