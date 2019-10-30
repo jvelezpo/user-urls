@@ -13,3 +13,10 @@ before_script:
 
 script:
   - yarn test
+
+deploy:
+  provider: releases
+  api_key: GOAUTHTOKEN
+  file: "file"
+  skip_cleanup: true
+  draft: true
